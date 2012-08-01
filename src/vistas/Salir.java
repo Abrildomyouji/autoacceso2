@@ -45,7 +45,7 @@ public class Salir extends javax.swing.JDialog {
 
         jLabel1.setText("Escoga de la siguiente lista su nombre");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new dao.MiComboBoxModel());
 
         jButton1.setText("Salir Definitivamente");
 
@@ -122,33 +122,7 @@ public class Salir extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Connection conn;
-    String bd = "base";
-    String login ="root";
-    String password ="tu clave";
-    String url = "jdbc:mysql://localhost/lat";
-         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            try (Connection conne = (Connection) DriverManager.getConnection(url,login,password)) {
-                Statement consulta=(Statement) conne.createStatement();
-    //consulta sql a la tabla docentes solo campo nomdocente
-                 ResultSet rsdocentes = consulta.executeQuery ("select IdAlumno from registro where FechaHoraSalida='NULL'");
-                // Se recorre el ResultSet docentes.
-                while (rsdocentes.next())
-                {
-
-                     //este es el Jcombobox
-                    jcbDocentes.addItem(rsdocentes.getObject("nomdocente"));
-                }
-            }
-        } catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error sql no se pueden leer datos");
-
-
-        } catch(ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error al leer la base de datos");
-
-        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

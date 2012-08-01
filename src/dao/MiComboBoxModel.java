@@ -9,28 +9,32 @@ import javax.swing.ComboBoxModel;
 
 
 public class MiComboBoxModel extends AbstractListModel implements ComboBoxModel {
- Calendar micalendar;
- ArrayList anioslist=new ArrayList();
+ 
+ ArrayList list=new ArrayList();
  
   public MiComboBoxModel(){
-      lista=(new Alumnos().select());
-      selection=(String)lista.get(0);
+      list=(new RegistroDAO().select());
+      selection=(String)list.get(0);
   }
   String selection="";
 
+    @Override
   public Object getElementAt(int index) {
-    return anioslist.get(index);
+    return list.get(index);
   }
 
+    @Override
   public int getSize() {
-    return anioslist.size();
+    return list.size();
   }
 
+    @Override
   public void setSelectedItem(Object anItem) {
     selection = (String) anItem; // to select and register an
   } // item from the pull-down list
 
   // Methods implemented from the interface ComboBoxModel
+    @Override
   public Object getSelectedItem() {
     return selection; // to add the selection to the combo box
   }
